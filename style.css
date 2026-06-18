@@ -1,0 +1,633 @@
+/* Style Design for Kaya Driving School - Social Media Hub */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Color Palette */
+  --bg-dark: #030307;
+  --glow-instagram: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  --glow-facebook: #1877f2;
+  --glow-google: #4285f4;
+  --glow-google-gold: #f4b400;
+  --glow-tiktok: #00f2fe;
+  --glow-tiktok-pink: #fe0979;
+  
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --bg-glass: rgba(10, 10, 18, 0.45);
+  --bg-glass-card: rgba(255, 255, 255, 0.03);
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-dark);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Luxury Background Gradients */
+.bg-ambient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+  background: radial-gradient(circle at 10% 20%, #080711 0%, #020205 100%);
+}
+
+.bg-glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.blob-1 {
+  top: -10%;
+  left: 20%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, #8a2be2 0%, transparent 70%);
+  animation: float-blob-1 25s infinite alternate ease-in-out;
+}
+
+.blob-2 {
+  bottom: -10%;
+  right: 10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, #1e90ff 0%, transparent 70%);
+  animation: float-blob-2 30s infinite alternate ease-in-out;
+}
+
+.blob-3 {
+  top: 40%;
+  left: -10%;
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, #ff007f 0%, transparent 70%);
+  animation: float-blob-3 20s infinite alternate ease-in-out;
+}
+
+@keyframes float-blob-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(8%, 12%) scale(1.1); }
+}
+@keyframes float-blob-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-10%, -8%) scale(0.9); }
+}
+@keyframes float-blob-3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(12%, -5%) scale(1.05); }
+}
+
+/* Background Canvas */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Centered Web Container (Desktop View) */
+.landing-wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: 2.5rem auto;
+  padding: 1px; /* Holds border gradient */
+  border-radius: 40px;
+  position: relative;
+  /* Premium Fintech Glowing Border around the entire container */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(138, 43, 226, 0.2) 80%, rgba(255, 255, 255, 0.1) 100%);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8),
+              0 0 50px rgba(138, 43, 226, 0.08);
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  animation: page-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes page-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.landing-container {
+  background: var(--bg-glass);
+  border-radius: 39px;
+  width: 100%;
+  min-height: 820px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px 36px 24px;
+}
+
+/* Top Section: Glass Shape and Profile */
+.top-header {
+  position: relative;
+  width: 100%;
+  height: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Semi-circular glass shape coming from the top center */
+.glass-semicircle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 140px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border-bottom-left-radius: 140px;
+  border-bottom-right-radius: 140px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
+              inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 15px;
+  z-index: 1;
+}
+
+/* Business logo wrapper badge for high-contrast */
+.logo-wrapper {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 8px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35),
+              inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 2px;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.logo-wrapper:hover {
+  transform: scale(1.04);
+}
+
+.business-logo {
+  height: 62px;
+  max-width: 170px;
+  object-fit: contain;
+}
+
+/* Profile image overlapping the bottom of the semi-circle */
+.profile-image-container {
+  position: absolute;
+  top: 96px; /* Overlaps bottom of 140px semi-circle nicely */
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(138, 43, 226, 0.6) 100%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.profile-image-container:hover {
+  transform: scale(1.05) rotate(3deg);
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #12121e;
+}
+
+/* Business info below profile image */
+.business-info {
+  margin-top: 198px; /* Pushes text below profile container */
+  text-align: center;
+  width: 100%;
+  z-index: 3;
+}
+
+.business-name {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.business-tagline {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.2px;
+}
+
+/* Main Content Text */
+.main-content {
+  text-align: center;
+  margin: 1.25rem 0 1.75rem 0;
+}
+
+.main-heading {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 30%, #b8a3e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.main-subheading {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Social Media Grid Layout */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Social Card */
+.social-card {
+  position: relative;
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 30px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 155px;
+  text-decoration: none;
+  color: var(--text-primary);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Glow Background behind cards (Hover effect) */
+.social-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+  filter: blur(20px);
+}
+
+.social-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.social-card:hover::before {
+  opacity: 0.12;
+}
+
+/* Specific Card Configurations */
+.card-instagram:hover::before {
+  background: var(--glow-instagram);
+  opacity: 0.15;
+}
+.card-instagram:hover {
+  border-color: rgba(220, 39, 67, 0.4);
+  box-shadow: 0 15px 30px rgba(220, 39, 67, 0.15), 0 0 15px rgba(220, 39, 67, 0.1);
+}
+.card-instagram .card-icon-wrap {
+  color: #f09433;
+  background: linear-gradient(135deg, rgba(240, 148, 51, 0.1) 0%, rgba(188, 24, 136, 0.1) 100%);
+}
+.card-instagram:hover .card-icon-wrap {
+  background: var(--glow-instagram);
+  color: #fff;
+  transform: scale(1.05) rotate(-3deg);
+}
+
+.card-facebook:hover::before {
+  background: var(--glow-facebook);
+  opacity: 0.2;
+}
+.card-facebook:hover {
+  border-color: rgba(24, 119, 242, 0.4);
+  box-shadow: 0 15px 30px rgba(24, 119, 242, 0.15), 0 0 15px rgba(24, 119, 242, 0.1);
+}
+.card-facebook .card-icon-wrap {
+  color: var(--glow-facebook);
+  background: rgba(24, 119, 242, 0.1);
+}
+.card-facebook:hover .card-icon-wrap {
+  background: var(--glow-facebook);
+  color: #fff;
+  transform: scale(1.05) rotate(-3deg);
+}
+
+.card-google:hover::before {
+  background: linear-gradient(135deg, var(--glow-google) 0%, var(--glow-google-gold) 100%);
+  opacity: 0.15;
+}
+.card-google:hover {
+  border-color: rgba(244, 180, 0, 0.4);
+  box-shadow: 0 15px 30px rgba(244, 180, 0, 0.15), 0 0 15px rgba(244, 180, 0, 0.1);
+}
+.card-google .card-icon-wrap {
+  color: var(--glow-google-gold);
+  background: rgba(244, 180, 0, 0.1);
+}
+.card-google:hover .card-icon-wrap {
+  background: linear-gradient(135deg, var(--glow-google-gold) 0%, var(--glow-google) 100%);
+  color: #fff;
+  transform: scale(1.05) rotate(-3deg);
+}
+
+.card-tiktok:hover::before {
+  background: linear-gradient(135deg, var(--glow-tiktok) 0%, var(--glow-tiktok-pink) 100%);
+  opacity: 0.25;
+}
+.card-tiktok:hover {
+  border-color: rgba(0, 242, 254, 0.4);
+  box-shadow: 0 15px 30px rgba(0, 242, 254, 0.15), 0 0 15px rgba(254, 9, 121, 0.1);
+}
+.card-tiktok .card-icon-wrap {
+  color: var(--glow-tiktok);
+  background: rgba(0, 242, 254, 0.1);
+}
+.card-tiktok:hover .card-icon-wrap {
+  background: linear-gradient(135deg, var(--glow-tiktok) 0%, var(--glow-tiktok-pink) 100%);
+  color: #fff;
+  transform: scale(1.05) rotate(-3deg);
+}
+
+/* Card Elements */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.card-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2px;
+}
+
+/* Arrow Button inside Card */
+.card-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.social-card:hover .card-arrow {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  transform: translateX(2px) scale(1.05);
+}
+
+.card-arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.card-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Premium Website Button */
+.website-btn-wrapper {
+  margin-top: auto;
+  position: relative;
+  width: 100%;
+}
+
+.website-btn {
+  width: 100%;
+  height: 62px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2),
+              inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.website-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(138, 43, 226, 0.15),
+              0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.website-btn:active {
+  transform: translateY(-1px);
+}
+
+.btn-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-left svg {
+  width: 22px;
+  height: 22px;
+  color: var(--text-secondary);
+  transition: transform 0.4s ease;
+}
+
+.website-btn:hover .btn-left svg {
+  transform: rotate(15deg) scale(1.08);
+  color: #fff;
+}
+
+.btn-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  transition: transform 0.3s ease;
+}
+
+.website-btn:hover .btn-arrow {
+  transform: translateX(4px);
+  color: #fff;
+}
+
+.btn-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Footer info */
+.footer-credits {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 24px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Responsive Styles for Mobile Viewports */
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+    align-items: flex-start;
+  }
+  
+  .landing-wrapper {
+    margin: 0;
+    max-width: 100%;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  
+  .landing-container {
+    border-radius: 0;
+    min-height: 100vh;
+    padding: 0 20px 40px 20px;
+    background: radial-gradient(circle at 50% 10%, rgba(15, 12, 30, 0.8) 0%, rgba(3, 3, 7, 0.98) 100%);
+  }
+
+  .top-header {
+    height: 235px;
+  }
+
+  .glass-semicircle {
+    width: 240px;
+    height: 120px;
+    border-bottom-left-radius: 120px;
+    border-bottom-right-radius: 120px;
+    padding-top: 10px;
+  }
+
+  .logo-wrapper {
+    padding: 6px 12px;
+    border-radius: 12px;
+    margin-top: 1px;
+  }
+
+  .business-logo {
+    height: 48px;
+    max-width: 140px;
+  }
+
+  .profile-image-container {
+    top: 80px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .business-info {
+    margin-top: 170px;
+  }
+
+  .social-grid {
+    gap: 12px;
+  }
+
+  .social-card {
+    border-radius: 24px;
+    padding: 20px 16px;
+    height: 140px;
+  }
+}
